@@ -24,7 +24,6 @@ const AddReceta = () => {
   }, [Recipes]);
 
   return (
-    <ListContext>
       <ScrollView>
         <Image style={styles.image} source={require('./images/icono-etiqueta-recetas-calabacin-cru.png')}></Image>
         <TextInput style={styles.input} onChangeText={setName} value={name} placeholder='Receta' />
@@ -41,9 +40,7 @@ const AddReceta = () => {
         )}
       />
         <Button  title='Agregar' onPress={HandlerRecipes}></Button>
-
       </ScrollView>
-    </ListContext>
   )
 }
 

@@ -9,11 +9,12 @@ interface Recipe {
 interface ContextType {
     Recipes: Recipe[],
     addRecipe: (name: string, ingredients: string) => void,
-    dltRecipe: (id: number) => void
+    dltRecipe: (index: number) => void
+    recipeSelect: (index: number) => void
 }
 
 export const RecipeContext = createContext<ContextType>({
-    Recipes: [],
+    recipes: [],
     addRecipe: () => {},
     dltRecipe: () => {}
 });
@@ -31,16 +32,14 @@ const addRecipe = (name: string, ingredients: string) => {
     setRecipes([...recipes, {name, ingredients}])
 }
 
-const dltRecipe = (id: number) => {
+const dltRecipe = (index: number) => {
   setRecipes(recipes.filter((_, i) => i !== index));
 }
 
   return (
-    <View>
       <RecipeContext.Provider value={{addRecipe,dltRecipe, recipes}}>
       {props.children}
       </RecipeContext.Provider>
-    </View>
   )
 }
 
