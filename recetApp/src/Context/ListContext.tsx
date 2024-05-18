@@ -40,11 +40,11 @@ const dltRecipe = (index: number) => {
 }
 
 const recipeSelect = (index: number) => {
-  
+  setSltRecipe(recipes[index])
 }
 
   return (
-      <RecipeContext.Provider value={{addRecipe,dltRecipe, recipes}}>
+      <RecipeContext.Provider value={{addRecipe,dltRecipe, recipes, recipeSelect, sltRecipe}}>
       {props.children}
       </RecipeContext.Provider>
   )

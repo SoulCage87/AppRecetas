@@ -1,12 +1,24 @@
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, Image, TextInput } from 'react-native'
-import React, { useContext } from 'react'
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, Image, TextInput, Alert } from 'react-native'
+import React, { useContext, useState } from 'react'
 import ListContext from '../Context/ListContext'
 import { RecipeContext } from '../Context/ListContext'
 import { useNavigation } from '@react-navigation/native'
 
 const ListReceta = () => {
-const {dltRecipe, recipes}  = useContext(RecipeContext)
+const {dltRecipe, recipes, recipeSelect}  = useContext(RecipeContext)
 const navigate = useNavigation();
+
+const [search, setSearch] = useState('')
+
+const handleSearch = () => {
+  const index = parseInt(search, 10);
+  if(index => 0 && index <= recipes.length) {
+    recipeSelect(index)
+    navigate.navigate('DetailRecipe')
+  }else {
+     Alert.alert('Error', 'Nro de receta Invalido')
+  }
+}
 
   return (
       <View>
@@ -25,8 +37,8 @@ const navigate = useNavigation();
           </View>
         )}
       />
-     <TextInput style={styles.input}  placeholder='Ingrese Nro. de Receta' />
-       <TouchableOpacity onPress={() => navigate.navigate('DetailRecipe')}>
+     <TextInput style={styles.input} value={search} onChangeText={setSearch}  placeholder='Ingrese Nro. de Receta' />
+       <TouchableOpacity onPress={handleSearch}>
         <Text style={styles.searchButton} >Buscar</Text>
        </TouchableOpacity>
       </View>
