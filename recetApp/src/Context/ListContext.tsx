@@ -16,7 +16,8 @@ interface ContextType {
 export const RecipeContext = createContext<ContextType>({
     recipes: [],
     addRecipe: () => {},
-    dltRecipe: () => {}
+    dltRecipe: () => {},
+    recipeSelect: () => {}
 });
 
 interface Node {
@@ -27,6 +28,8 @@ interface Node {
 const ListContext = (props: Node) => {
 
 const [recipes, setRecipes] = useState<Recipe[]>([])
+const [sltRecipe, setSltRecipe] = useState<Recipe | null>(null)
+
 
 const addRecipe = (name: string, ingredients: string) => {
     setRecipes([...recipes, {name, ingredients}])
@@ -34,6 +37,10 @@ const addRecipe = (name: string, ingredients: string) => {
 
 const dltRecipe = (index: number) => {
   setRecipes(recipes.filter((_, i) => i !== index));
+}
+
+const recipeSelect = (index: number) => {
+  
 }
 
   return (

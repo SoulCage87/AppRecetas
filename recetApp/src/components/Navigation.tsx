@@ -7,6 +7,7 @@ import AddReceta from '../screen/AddReceta';
 import { NavigationContainer } from '@react-navigation/native';
 import ListReceta from '../screen/ListReceta';
 import ListContext from '../Context/ListContext';
+import DetailRecipe from '../screen/DetailRecipe';
 
 const tab = createBottomTabNavigator();
 const tabHome = createNativeStackNavigator();
@@ -17,6 +18,7 @@ function MyStack() {
       <tabHome.Screen name='Home' component={Home} />
       <tabHome.Screen name='AddRecipe' component={AddReceta} />
       <tabHome.Screen name='ListRecipe' component={ListReceta} />
+      <tabHome.Screen name='DetailRecipe' component={DetailRecipe} />
     </tabHome.Navigator>
   )
 }
@@ -28,6 +30,9 @@ const Navigation = () => {
           <tab.Screen name='Home' component={Home} />
           <tab.Screen name='AddRecipe' component={AddReceta} />
           <tab.Screen name='ListRecipe' component={ListReceta} />
+          <tab.Screen name='DetailRecipe' component={DetailRecipe} options={{
+            headerShown: false
+          }}/>
         </tab.Navigator>
       </NavigationContainer>
   )

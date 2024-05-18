@@ -1,10 +1,12 @@
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, Image } from 'react-native'
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, Image, TextInput } from 'react-native'
 import React, { useContext } from 'react'
 import ListContext from '../Context/ListContext'
 import { RecipeContext } from '../Context/ListContext'
+import { useNavigation } from '@react-navigation/native'
 
 const ListReceta = () => {
 const {dltRecipe, recipes}  = useContext(RecipeContext)
+const navigate = useNavigation();
 
   return (
       <View>
@@ -23,6 +25,10 @@ const {dltRecipe, recipes}  = useContext(RecipeContext)
           </View>
         )}
       />
+     <TextInput style={styles.input}  placeholder='Ingrese Nro. de Receta' />
+       <TouchableOpacity onPress={() => navigate.navigate('DetailRecipe')}>
+        <Text style={styles.searchButton} >Buscar</Text>
+       </TouchableOpacity>
       </View>
   )
 }
@@ -49,6 +55,13 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
   },
+  searchButton: {
+  backgroundColor: 'cyan',
+  padding: 10,
+  borderRadius: 10,
+  textAlign:'center',
+  alignSelf: 'center'
+  },
   deleteButtonText: {
     color: 'white',
   },
@@ -62,9 +75,11 @@ const styles = StyleSheet.create({
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,
-    paddingHorizontal: 8,
-    marginRight: 8,
-    flex: 1,
+    marginBottom: 12,
+    paddingHorizontal: 5,
+    borderRadius: 40,
+    textAlign: 'center',
+    marginTop: 10
   },
   image: {
     width: 100,
